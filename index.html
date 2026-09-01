@@ -1,0 +1,688 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>The Moto Men | Premium Franchise Application</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
+:root{
+  --bg:#050607;--panel:#0c0e10;--panel2:#111417;--card:#15181b;
+  --line:#292d32;--line2:#3b4148;--red:#e3323d;--red2:#ff4b55;--red3:#ff747b;
+  --white:#f8f9fa;--muted:#92989e;--muted2:#666d73;--success:#55d6a0;--danger:#ff747b;
+  --shadow:0 30px 90px rgba(0,0,0,.58)
+}
+*{box-sizing:border-box}
+html,body{width:100%;min-height:100%;margin:0}
+body{
+  color:var(--white);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 84% 0,rgba(227,50,61,.15),transparent 29%),
+    radial-gradient(circle at 8% 100%,rgba(255,255,255,.035),transparent 22%),
+    linear-gradient(130deg,#030405,#080a0c 58%,#050607);
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+.page{width:100%;min-height:100svh;padding:14px;display:flex;flex-direction:column;gap:10px}
+
+.hero{
+  flex:0 0 124px;border:1px solid rgba(255,255,255,.085);border-radius:19px;
+  position:relative;overflow:hidden;box-shadow:var(--shadow);
+  background:
+    radial-gradient(circle at 83% 50%,rgba(227,50,61,.13),transparent 24%),
+    linear-gradient(110deg,#070809,#0a0b0d 70%,#11090b);
+}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:44px 100%;opacity:.65;
+}
+.hero:after{
+  content:"";position:absolute;right:0;top:0;width:48%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(227,50,61,.055),transparent);
+  transform:skewX(-18deg)
+}
+.hero-inner{
+  min-height:124px;height:100%;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:18px 26px;position:relative;z-index:2
+}
+.hero-copy-block{max-width:730px}.hero-kicker{color:var(--red3);font-size:9px;font-weight:900;letter-spacing:1.9px;text-transform:uppercase;margin-bottom:6px}
+.hero-title{margin:0;font-size:clamp(27px,3.8vw,47px);line-height:.98;letter-spacing:-1.6px;font-weight:900}
+.hero-title strong{color:#fff}.hero-copy{margin:8px 0 0;color:#b9bdc1;max-width:600px;font-size:10px;line-height:1.5}
+.hero-logo{width:185px;max-width:24%;height:auto;object-fit:contain;margin-left:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
+
+.shell{flex:1 1 auto;min-height:0;background:linear-gradient(145deg,rgba(17,19,21,.97),rgba(8,9,10,.97));border:1px solid rgba(255,255,255,.09);border-radius:21px;overflow:hidden;box-shadow:var(--shadow)}
+.layout{min-height:0;display:grid;grid-template-columns:230px minmax(0,1fr)}
+.sidebar{min-height:0;padding:17px 14px;border-right:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.12));position:relative}
+.sidebar:after{content:"";position:absolute;right:-1px;top:14px;bottom:14px;width:1px;background:linear-gradient(180deg,transparent,rgba(227,50,61,.6),transparent)}
+.sidebar-logo{width:110px;display:block;margin:0 0 17px}
+.sidebar-label{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:#676d73;font-weight:900}
+.sidebar h3{margin:4px 0 2px;font-size:14px}.sidebar p{margin:0;color:#767d83;font-size:8px}
+.steps{margin-top:17px}
+.step{width:100%;display:flex;align-items:center;gap:9px;padding:10px 8px;margin-bottom:6px;color:#80868c;background:rgba(255,255,255,.012);border:1px solid transparent;border-radius:11px;transition:.2s ease;cursor:pointer;text-align:left}
+.step:hover{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07)}
+.step-num{width:27px;height:27px;display:grid;place-items:center;flex:0 0 27px;border-radius:9px;border:1px solid #353a40;background:#15181a;font-size:8px;font-weight:900}
+.step-name{font-size:9px;font-weight:900}.step-meta{margin-left:auto;font-size:8px;color:#565d63}
+.step.active{color:#fff;background:linear-gradient(90deg,rgba(227,50,61,.13),rgba(227,50,61,.025));border-color:rgba(227,50,61,.36)}
+.step.active .step-num{color:#fff;background:linear-gradient(145deg,#f34d56,#bd1f29);border-color:#ff5059;box-shadow:0 0 20px rgba(227,50,61,.18)}
+.step.done{color:#c7cacf}.step.done .step-num{color:var(--success);border-color:rgba(85,214,160,.36)}
+.sidebar-quote{position:absolute;left:14px;right:14px;bottom:13px;padding:11px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.008))}
+.sidebar-quote .mark{color:var(--red2);font-size:19px;line-height:1}.sidebar-quote strong{display:block;margin-top:3px;font-size:9px;line-height:1.4}.sidebar-quote span{display:block;margin-top:5px;color:#6d7379;font-size:8px;line-height:1.4}
+
+.main{min-height:0;padding:20px 25px 12px;background:radial-gradient(circle at 90% 8%,rgba(227,50,61,.045),transparent 23%)}
+#applicationForm{min-height:0;display:flex;flex-direction:column}
+#applicationForm>.form-step{min-height:0;flex:0 0 auto;padding:0 4px 5px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:5px}
+.kicker{color:var(--red3);font-size:8px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.progress-text{color:#6f757b;font-size:8px;font-weight:800;padding:5px 8px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:#0c0e10}
+h1{margin:0;font-size:27px;line-height:1.03;letter-spacing:-.8px;font-weight:900}.desc{margin:7px 0 16px;max-width:720px;color:#969ca2;font-size:10px;line-height:1.55}
+.form-step{display:none;animation:stepIn .32s cubic-bezier(.2,.8,.2,1)}.form-step.active{display:block}@keyframes stepIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.question{position:relative;margin-bottom:10px;padding:14px 14px 13px 16px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.011));overflow:hidden;box-shadow:0 7px 22px rgba(0,0,0,.13)}
+.question:before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:2px;background:linear-gradient(180deg,transparent,var(--red2),transparent)}.question:after{content:"";position:absolute;right:-25px;top:-30px;width:90px;height:90px;border-radius:50%;background:rgba(227,50,61,.04)}
+.question-head{display:flex;gap:10px;align-items:flex-start;position:relative;z-index:1}.q-icon{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border-radius:9px;border:1px solid rgba(227,50,61,.27);background:rgba(227,50,61,.055);color:var(--red3);font-size:12px}.question-number{color:#767c82;font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase}label.q-title{display:block;margin:2px 0 4px;color:#f1f2f3;font-size:11px;font-weight:900}.q-help{color:#7e848a;font-size:8px;line-height:1.45}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.full{grid-column:1/-1}.field{min-width:0}.field label{display:block;margin:0 0 6px;color:#dfe1e3;font-size:9px;font-weight:900}.req{color:var(--red3)}
+input,select,textarea{width:100%;border:1px solid #353a40;border-radius:10px;outline:0;color:#f5f6f7;background:#0d0f11;transition:.2s ease}
+input,select{height:42px;padding:0 12px;font-size:10px}textarea{min-height:96px;padding:10px 12px;font-size:10px;line-height:1.5;resize:vertical}input::placeholder,textarea::placeholder{color:#5e646a}
+input:focus,select:focus,textarea:focus{border-color:rgba(227,50,61,.78);box-shadow:0 0 0 3px rgba(227,50,61,.07),0 8px 20px rgba(0,0,0,.15);background:#101214}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#91979d 50%),linear-gradient(135deg,#91979d 50%,transparent 50%);background-position:calc(100% - 14px) 18px,calc(100% - 10px) 18px;background-size:4px 4px,4px 4px;background-repeat:no-repeat;padding-right:30px}
+.row-inline{display:flex;gap:7px}.row-inline input{flex:1}.same-row{display:flex!important;align-items:center!important;gap:7px!important;margin-top:7px!important;color:#7c8288!important;font-size:8px!important;font-weight:700!important}.same-row input{width:13px!important;height:13px!important;margin:0!important;accent-color:var(--red)}
+.btn{min-height:43px;border-radius:11px;padding:0 18px;font-size:9px;font-weight:900;letter-spacing:.2px;border:1px solid transparent;transition:.18s ease}.btn:active{transform:translateY(1px)}
+.primary{color:#fff;background:linear-gradient(180deg,#ef424b 0%,#c7212b 100%);border-color:rgba(255,91,101,.17);box-shadow:0 9px 20px rgba(199,33,43,.18)}.primary:hover{filter:brightness(1.05);box-shadow:0 12px 24px rgba(199,33,43,.24)}
+.secondary{color:#e5e7e9;background:linear-gradient(180deg,#24272b 0%,#1b1d20 100%);border-color:#42474d;box-shadow:0 6px 13px rgba(0,0,0,.14)}.secondary:hover{filter:brightness(1.07)}
+.verify{min-width:106px}.actions{display:flex;justify-content:flex-end;gap:9px;margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,.055)}.actions .btn{min-width:150px}
+.fine,.hint{margin-top:5px;color:#646a70;font-size:8px;line-height:1.45}.field-error{display:none;margin-top:5px;color:var(--danger);font-size:8px}.has-error .field-error{display:block}.error{border-color:rgba(255,116,123,.75)!important}
+.message{display:none;margin-bottom:9px;padding:8px 10px;border-radius:9px;font-size:8px;line-height:1.4}.message.show{display:block}.message.error{color:#ffd7d9;background:rgba(255,113,120,.06);border:1px solid rgba(255,113,120,.21)}.message.success{color:#caffea;background:rgba(85,214,160,.05);border:1px solid rgba(85,214,160,.20)}
+.otp-box{display:none;margin-top:8px;padding:11px;border:1px solid rgba(227,50,61,.24);border-radius:12px;background:rgba(227,50,61,.03)}.otp-box.show{display:block}.otp-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.otp-head strong{font-size:9px}.otp-head span{color:#6d7379;font-size:8px}.otp-help{margin:6px 0 7px;color:#81878d;font-size:8px;line-height:1.45}.otp-input{text-align:center;letter-spacing:8px!important;font-size:18px!important;font-weight:900!important}.otp-actions{display:flex;gap:7px;margin-top:7px}.otp-actions .btn{flex:1}.otp-status{display:none;margin-top:6px;font-size:8px}.otp-status.show{display:block}.otp-status.ok{color:var(--success)}.otp-status.bad{color:var(--danger)}.verified{display:none;align-items:center;gap:6px;margin-top:6px;color:var(--success);font-size:8px}.verified.show{display:flex}.verified-dot{width:14px;height:14px;border:1px solid var(--success);border-radius:50%;display:grid;place-items:center}
+.footer-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}.footer-item{padding:8px 10px;background:rgba(5,6,7,.68);text-align:center}.footer-item strong{display:block;color:#e5e7e9;font-size:8px}.footer-item span{display:block;margin-top:2px;color:#676d73;font-size:7px}
+.success{display:none;min-height:420px;align-items:center;justify-content:center;text-align:center;padding:30px}.success.active{display:flex}.success-mark{width:68px;height:68px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#f04a53,#bb1d27);box-shadow:0 0 0 8px rgba(227,50,61,.08),0 18px 50px rgba(227,50,61,.14);font-size:28px;font-weight:900}.success h2{margin:0;font-size:28px}.success p{max-width:500px;margin:9px auto 0;color:#90969c;font-size:11px;line-height:1.6}
+
+@media(max-width:820px){
+  .page{padding:8px;gap:8px}
+  .hero{min-height:106px;flex-basis:106px;border-radius:16px}
+  .hero-inner{min-height:106px;padding:13px 14px}
+  .hero-logo{width:130px;max-width:33%}.hero-title{font-size:28px}.hero-copy{font-size:9px}
+  .layout{grid-template-columns:1fr}
+  .sidebar{padding:8px 9px;border-right:0;border-bottom:1px solid var(--line)}
+  .sidebar:after,.sidebar-logo,.sidebar-label,.sidebar h3,.sidebar p,.sidebar-quote{display:none}
+  .steps{display:flex;overflow-x:auto;gap:6px;margin:0;scrollbar-width:none}
+  .steps::-webkit-scrollbar{display:none}
+  .step{flex:0 0 auto;width:auto;margin:0;padding:7px 10px;min-height:36px}.step-meta{display:none}
+  .main{padding:18px 14px 12px;overflow:visible}
+  #applicationForm>.form-step{overflow:visible}
+  .actions{position:sticky;bottom:6px;z-index:20;background:linear-gradient(180deg,transparent,#08090a 24%);padding:13px 0 2px}
+}
+@media(max-width:580px){
+  .page{padding:7px;gap:7px}
+  .hero{min-height:100px;flex-basis:100px}
+  .hero-inner{min-height:100px;padding:11px}
+  .hero-logo{position:absolute;right:10px;top:9px;width:98px;max-width:35%}
+  .hero-copy-block{padding-top:40px}
+  .hero-kicker{font-size:8px;letter-spacing:1.3px}
+  .hero-title{font-size:23px;letter-spacing:-.9px;max-width:88%}
+  .hero-copy{font-size:8px;max-width:84%}
+  .main{padding:15px 11px 9px}
+  h1{font-size:21px}.desc{font-size:9px;margin-bottom:12px}
+  .fields{grid-template-columns:1fr}.full{grid-column:auto}
+  .question{padding:12px 11px 11px 13px}
+  input,select{height:46px;font-size:11px}textarea{min-height:110px;font-size:11px}
+  .btn{min-height:46px;font-size:10px}.actions .btn{flex:1;min-width:0}
+  .row-inline{flex-direction:column}.verify{width:100%}
+  .footer-strip{grid-template-columns:1fr 1fr}.footer-item{padding:8px 7px}
+}
+
+/* ===== MOBILE V2: hard-width / overflow fixes ===== */
+.layout,
+.layout > *,
+.main,
+#applicationForm,
+.form-step,
+.question,
+.question-head,
+.question > *,
+.fields,
+.field,
+.row-inline {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.main,
+#applicationForm,
+.form-step {
+  width: 100%;
+}
+
+.question-head > div,
+.question-head .q-copy,
+.field,
+.fields {
+  min-width: 0;
+}
+
+.question-head label,
+.question-head .q-help,
+.desc,
+.hero-copy,
+.hero-title {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+input, select, textarea, button {
+  max-width: 100%;
+  min-width: 0;
+}
+
+@media(max-width:820px){
+  html,body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden !important;
+  }
+
+  .page,
+  .hero,
+  .shell,
+  .layout,
+  .main,
+  #applicationForm{
+    width:100%;
+    max-width:100%;
+  }
+
+  .hero-inner{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .hero-copy-block{
+    min-width:0;
+    max-width:calc(100% - 125px);
+  }
+
+  .hero-title{
+    font-size:26px;
+    line-height:1.02;
+    letter-spacing:-.75px;
+  }
+
+  .hero-copy{
+    max-width:100%;
+    white-space:normal;
+  }
+
+  .main{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .form-step{
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  .question{
+    width:100%;
+    overflow:hidden;
+  }
+
+  .question-head{
+    width:100%;
+  }
+
+  .question-head > div:last-child{
+    flex:1 1 auto;
+    min-width:0;
+  }
+
+  .q-title,
+  .question-head .q-title{
+    white-space:normal !important;
+  }
+
+  .fields{
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100%;
+  }
+
+  .field.full{
+    grid-column:auto !important;
+  }
+
+  .fields input,
+  .fields select,
+  .fields textarea{
+    width:100%;
+  }
+
+  .actions{
+    width:100%;
+  }
+
+  .actions .btn{
+    min-width:0;
+  }
+}
+
+@media(max-width:580px){
+  .page{
+    padding:6px;
+  }
+
+  .hero{
+    min-height:98px;
+    flex-basis:98px;
+  }
+
+  .hero-inner{
+    min-height:98px;
+    padding:10px 11px;
+  }
+
+  .hero-copy-block{
+    padding-top:38px;
+    max-width:calc(100% - 105px);
+  }
+
+  .hero-logo{
+    width:92px;
+    right:8px;
+    top:8px;
+  }
+
+  .hero-kicker{
+    font-size:7px;
+    margin-bottom:5px;
+  }
+
+  .hero-title{
+    font-size:21px;
+    line-height:1.02;
+    letter-spacing:-.65px;
+  }
+
+  .hero-copy{
+    font-size:7.5px;
+    line-height:1.35;
+    margin-top:5px;
+  }
+
+  .sidebar{
+    padding:7px 7px;
+  }
+
+  .steps{
+    width:100%;
+    max-width:100%;
+    padding-bottom:1px;
+  }
+
+  .step{
+    flex:0 0 auto;
+    padding:7px 9px;
+    gap:7px;
+  }
+
+  .step-num{
+    width:25px;
+    height:25px;
+    flex-basis:25px;
+  }
+
+  .main{
+    padding:14px 9px 8px;
+  }
+
+  .topline{
+    margin-bottom:4px;
+  }
+
+  .kicker{
+    font-size:7px;
+  }
+
+  .progress-text{
+    font-size:7px;
+    padding:4px 7px;
+  }
+
+  h1{
+    font-size:22px;
+    line-height:1.05;
+    letter-spacing:-.65px;
+  }
+
+  .desc{
+    font-size:8.5px;
+    line-height:1.45;
+    margin:6px 0 11px;
+  }
+
+  .question{
+    padding:11px 10px 11px 12px;
+    margin-bottom:8px;
+    border-radius:13px;
+  }
+
+  .question-head{
+    gap:8px;
+  }
+
+  .q-icon{
+    width:29px;
+    height:29px;
+    flex-basis:29px;
+  }
+
+  label.q-title{
+    font-size:10px;
+    line-height:1.25;
+  }
+
+  .q-help{
+    font-size:7.5px;
+    line-height:1.4;
+  }
+
+  input,select{
+    height:45px;
+    font-size:10.5px;
+  }
+
+  textarea{
+    min-height:105px;
+    font-size:10.5px;
+  }
+
+  .actions{
+    gap:7px;
+    padding-top:10px;
+  }
+
+  .btn{
+    min-height:45px;
+    padding:0 13px;
+    font-size:9px;
+  }
+}
+
+
+/* ===== FINAL BUTTON / MOBILE POLISH ===== */
+.actions{align-items:center}
+.actions .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:50px;
+  min-height:50px;
+  padding:0 22px;
+  line-height:1;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.35px;
+  white-space:nowrap;
+}
+#nextBtn,#submitBtn{min-width:155px}
+#backBtn{min-width:118px}
+.primary{letter-spacing:.35px}
+@media(max-width:580px){
+  .actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding-top:11px}
+  .actions .btn{height:49px;min-height:49px;padding:0 15px;font-size:9px;letter-spacing:.25px;flex:0 0 auto}
+  #nextBtn,#submitBtn{min-width:148px}
+  #backBtn{min-width:112px}
+  .actions .btn:only-child{width:100%;min-width:0}
+}
+
+</style></head>
+<body>
+<main class="page">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy-block">
+      <div class="hero-kicker">Franchise Application</div>
+      <h2 class="hero-title">Build a <strong>Premium Automotive</strong> Business.</h2>
+      <p class="hero-copy">Tell us about your vision. We’ll get to know your plan before we talk numbers.</p>
+    </div>
+    <img class="hero-logo" src="https://themotomen.com/wp-content/uploads/2024/03/elementor/thumbs/Logo-300-1-150x89.webp" alt="The Moto Men">
+  </div>
+</section>
+
+<section class="shell">
+<div class="layout">
+<aside class="sidebar">
+  <img class="sidebar-logo" src="https://themotomen.com/wp-content/uploads/2024/03/elementor/thumbs/Logo-300-1-150x89.webp" alt="The Moto Men">
+  <div class="sidebar-label">Private Franchise Application</div>
+  <h3>Let’s see if we're a fit.</h3><p>Takes approximately 2–3 minutes.</p>
+  <div class="steps">
+    <button type="button" class="step active" data-step="1" aria-label="Go to step 1: Your Why"><span class="step-num">01</span><span class="step-name">Your Why</span><span class="step-meta">●</span></button>
+    <div class="step" data-step="2"><span class="step-num">02</span><span class="step-name">Your Business</span><span class="step-meta">→</span></div>
+    <div class="step" data-step="3"><span class="step-num">03</span><span class="step-name">Investment</span><span class="step-meta">₹</span></div>
+    <div class="step" data-step="4"><span class="step-num">04</span><span class="step-name">Location</span><span class="step-meta">⌖</span></div>
+    <div class="step" data-step="5"><span class="step-num">05</span><span class="step-name">About You</span><span class="step-meta">●</span></div>
+  </div>
+  <div class="sidebar-quote"><div class="mark">“</div><strong>We’re not looking for everyone. We’re looking for the right people.</strong><span>Your answers help us understand whether this opportunity is the right fit for you.</span></div>
+</aside>
+
+<section class="main">
+<div id="message" class="message"></div>
+<form id="applicationForm">
+
+<div class="form-step active" data-form-step="1">
+  <div class="topline"><span class="kicker">Step 01 · Your Why</span><span class="progress-text">1 of 5</span></div>
+  <h1>Why do you want this business?</h1><p class="desc">Start with the reason behind your decision. The better we understand your motivation, the better we can understand your fit.</p>
+
+  <div class="question"><div class="question-head"><div class="q-icon">◎</div><div style="flex:1"><div class="question-number">Question 01</div><label class="q-title">Why do you want to start a business? <span class="req">*</span></label><div class="q-help">Choose the reason that best reflects what is actually driving you.</div>
+  <select name="why_business" required style="margin-top:12px"><option value="">Select what best describes you</option><option>I want to start my first business</option><option>I want to start another business</option><option>I want to build a long-term business</option><option>I want to enter the automotive industry</option><option>I want to turn my passion into a business</option><option>I see a strong opportunity in premium car care</option><option>Other</option></select><div class="field-error">Please select an option.</div></div></div></div>
+
+  <div class="question"><div class="question-head"><div class="q-icon">◆</div><div style="flex:1"><div class="question-number">Question 02</div><label class="q-title">Why specifically a car detailing business? <span class="req">*</span></label><div class="q-help">Tell us what attracts you to this industry. Be honest — there’s no “right” answer.</div>
+  <textarea name="why_detailing" required maxlength="1000" placeholder="Tell us what attracts you to this business..." style="margin-top:12px"></textarea><div class="fine">Be specific about what excites you, not what you think we want to hear.</div><div class="field-error">Please tell us a little about your motivation.</div></div></div></div>
+
+  <div class="question"><div class="question-head"><div class="q-icon">♡</div><div style="flex:1"><div class="question-number">Question 03</div><label class="q-title">How would you describe your interest in cars?</label><div class="q-help">Your relationship with the automotive world matters to us.</div>
+  <select name="car_interest" style="margin-top:12px"><option value="">Select an option</option><option>I am genuinely passionate about cars</option><option>I follow the automotive industry closely</option><option>I enjoy maintaining and detailing cars</option><option>I am interested in the business opportunity</option><option>I am still learning about the automotive industry</option></select></div></div></div>
+</div>
+
+<div class="form-step" data-form-step="2">
+  <div class="topline"><span class="kicker">Step 02 · Your Business</span><span class="progress-text">2 of 5</span></div>
+  <h1>Tell us about your business journey.</h1><p class="desc">We’re looking for people who have a clear reason for building a business and a realistic idea of what they want to create.</p>
+  <div class="fields">
+    <div class="field full"><label>Have you previously owned or managed a business? <span class="req">*</span></label><select name="previous_business" required><option value="">Select an option</option><option>Yes, I currently own a business</option><option>Yes, I have owned a business before</option><option>No, this would be my first business</option></select><div class="field-error">Please select an option.</div></div>
+    <div class="field"><label>What are you currently doing? <span class="req">*</span></label><select name="current_status" required><option value="">Select an option</option><option>Business Owner</option><option>Entrepreneur / Self-Employed</option><option>Salaried Professional</option><option>Investor</option><option>Family Business</option><option>Student</option><option>Other</option></select><div class="field-error">Please select an option.</div></div>
+    <div class="field"><label>Do you have automotive / detailing experience?</label><select name="auto_experience"><option value="">Select an option</option><option>Yes, I currently work in automotive</option><option>Yes, I have worked in automotive before</option><option>I have some detailing knowledge</option><option>No, but I am genuinely interested</option><option>No experience yet</option></select></div>
+    <div class="field full"><label>What do you want this business to become? <span class="req">*</span></label><textarea name="business_vision" required maxlength="1000" placeholder="For example: a full-time business, a second business, a long-term brand, multiple studios, etc."></textarea><div class="field-error">Please tell us what you want to build.</div></div>
+  </div>
+</div>
+
+<div class="form-step" data-form-step="3">
+  <div class="topline"><span class="kicker">Step 03 · Investment</span><span class="progress-text">3 of 5</span></div>
+  <h1>Let’s talk about your investment plan.</h1><p class="desc">This is not about judging your budget. It simply helps us understand whether the opportunity fits your current financial plan.</p>
+  <div class="fields">
+    <div class="field full"><label>How much are you realistically prepared to invest? <span class="req">*</span></label><select name="investment" required><option value="">Select your investment capacity</option><option>₹10–15 Lakhs</option><option>₹15–25 Lakhs</option><option>₹25–40 Lakhs</option><option>₹40–60 Lakhs</option><option>₹60 Lakhs+</option><option>I’m still evaluating my budget</option></select><div class="field-error">Please select your investment capacity.</div></div>
+    <div class="field"><label>How do you plan to fund the investment?</label><select name="funding"><option value="">Select an option</option><option>Personal savings</option><option>Business profits</option><option>Family funds</option><option>Bank / Business loan</option><option>Combination of sources</option><option>Still evaluating</option></select></div>
+    
+  </div>
+</div>
+
+
+<div class="form-step" data-form-step="4">
+  <div class="topline"><span class="kicker">Step 04 · Location</span><span class="progress-text">4 of 5</span></div>
+  <h1>Where in Delhi NCR do you want to build it?</h1>
+  <p class="desc">We’re currently focusing on the Delhi NCR market. Tell us the area you have in mind and what you already have in place.</p>
+  <div class="fields">
+    <div class="field full">
+      <label>Preferred Area / Locality in Delhi NCR <span class="req">*</span></label>
+      <input name="location_area" placeholder="e.g. South Delhi, Gurugram, Noida, Dwarka..." required autocomplete="address-level2">
+      <div class="field-error">Please enter the area or locality you are considering.</div>
+    </div>
+    <div class="field">
+      <label>Do you already have a property / location?</label>
+      <select name="property_status">
+        <option value="">Select an option</option>
+        <option>Yes, I own the property</option>
+        <option>Yes, I have identified a property</option>
+        <option>I’m currently looking</option>
+        <option>No, not yet</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>What type of location are you considering?</label>
+      <select name="location_type">
+        <option value="">Select an option</option>
+        <option>Main Road / High Visibility</option>
+        <option>Premium Commercial Area</option>
+        <option>High-End Residential Area</option>
+        <option>Near Car Dealerships / Automotive Market</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field full">
+      <label>Tell us briefly about the location you have in mind</label>
+      <textarea name="location_note" maxlength="700" placeholder="Area, landmark, property size, road visibility, parking, or anything else you already know..."></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="form-step" data-form-step="5">
+  <div class="topline"><span class="kicker">Step 05 · About You</span><span class="progress-text">5 of 5</span></div>
+  <h1>Just a few details about you.</h1><p class="desc">You’ve made it to the final step. Now share your details so our franchise team can review the application and reach you.</p>
+  <div class="fields">
+    <div class="field full"><label>Full Name <span class="req">*</span></label><input name="full_name" placeholder="Enter your full name" autocomplete="name" required><div class="field-error">Please enter your full name.</div></div>
+    <div class="field"><label>Mobile Number <span class="req">*</span></label><input name="mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" autocomplete="tel" required><div class="field-error">Please enter a valid 10-digit mobile number.</div></div>
+    <div class="field"><label>WhatsApp Number <span class="req">*</span></label><input name="whatsapp" type="tel" inputmode="numeric" maxlength="10" placeholder="WhatsApp number" autocomplete="tel" required><label class="same-row"><input id="whatsappSame" type="checkbox"> WhatsApp number is same as mobile</label><div class="field-error">Please enter a valid 10-digit WhatsApp number.</div></div>
+    <div class="field full"><label>Email Address <span class="req">*</span></label><div class="row-inline"><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button type="button" class="btn primary verify" id="sendOtpBtn">SEND OTP</button></div><div class="field-error">Please enter a valid email address.</div><div class="hint">We’ll send a one-time verification code to this email.</div>
+      <div class="otp-box" id="otpBox"><div class="otp-head"><strong>Secure email verification</strong><span id="timer">OTP expires in 05:00</span></div><div class="otp-help">Enter the 6-digit code sent to your inbox.</div><input id="otp" class="otp-input" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="••••••"><div class="otp-actions"><button type="button" class="btn primary" id="verifyOtpBtn">VERIFY EMAIL</button><button type="button" class="btn secondary" id="resendBtn" disabled>RESEND</button></div><div class="otp-status" id="otpStatus"></div></div>
+      <div class="verified" id="verified"><span class="verified-dot">✓</span>Email verified successfully</div>
+    </div>
+    <div class="field full"><label>Anything else you’d like us to know?</label><textarea name="additional_note" maxlength="1000" placeholder="Your background, goals, concerns, or anything else that might help us understand your plan..."></textarea></div>
+  </div>
+</div>
+
+<div class="actions"><button type="button" class="btn secondary" id="backBtn" style="display:none">← BACK</button><button type="button" class="btn primary" id="nextBtn">NEXT STEP  →</button><button type="submit" class="btn primary" id="submitBtn" style="display:none">SUBMIT APPLICATION  →</button></div>
+</form>
+
+<div class="success" id="success"><div><div class="success-mark">✓</div><h2>Application Received</h2><p>Thank you for your interest in The Moto Men franchise. Your application has been received and our team will review your profile.</p><p class="fine">If your profile is a match, our franchise team will contact you for the next step.</p></div></div>
+</section></div>
+
+<div class="footer-strip">
+  <div class="footer-item"><strong>Trusted Brand</strong><span>Premium automotive positioning.</span></div>
+  <div class="footer-item"><strong>Built for Business</strong><span>Structured franchise journey.</span></div>
+  <div class="footer-item"><strong>Premium Experience</strong><span>Detailing-led automotive care.</span></div>
+  <div class="footer-item"><strong>Private & Secure</strong><span>Your application stays confidential.</span></div>
+</div>
+</section>
+</main>
+
+<script>
+(function(){
+  const TOTAL=5; let current=1, emailVerified=false;
+  let sessionId=(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random()), otpTimer=null, resendTimer=null;
+  const form=document.getElementById("applicationForm"),steps=[...document.querySelectorAll(".step")],screens=[...document.querySelectorAll(".form-step")];
+  const next=document.getElementById("nextBtn"),back=document.getElementById("backBtn"),submit=document.getElementById("submitBtn");
+  const email=document.getElementById("email"),otpBox=document.getElementById("otpBox"),otp=document.getElementById("otp");
+  const sendOtp=document.getElementById("sendOtpBtn"),verifyOtp=document.getElementById("verifyOtpBtn"),resend=document.getElementById("resendBtn");
+  const otpStatus=document.getElementById("otpStatus"),timer=document.getElementById("timer"),verified=document.getElementById("verified");
+  const mobile=form.querySelector('[name="mobile"]'),whatsapp=form.querySelector('[name="whatsapp"]'),whatsappSame=document.getElementById("whatsappSame");
+
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(v.trim())}
+  function digits(v){return String(v||"").replace(/\D/g,"")}
+  function fields(){return [...screens[current-1].querySelectorAll("input,select,textarea")]}
+  function status(t,c){otpStatus.textContent=t;otpStatus.className="otp-status show "+(c||"")}
+  function validate(){
+    let ok=true; fields().forEach(el=>{const f=el.closest(".field");let good=true;
+      if(el.required && !String(el.value||"").trim())good=false;
+      if(el.name==="mobile" && digits(el.value).length!==10)good=false;
+      if(el.name==="whatsapp" && digits(el.value).length!==10)good=false;
+      if(el.name==="email" && !validEmail(el.value))good=false;
+      if(!good){ok=false;el.classList.add("error");f?.classList.add("has-error")}else{el.classList.remove("error");f?.classList.remove("has-error")}
+    });
+    if(current===4){const loc=form.querySelector("[name=\"location_area\"]");if(!String(loc?.value||"").trim()){loc?.classList.add("error");loc?.closest(".field")?.classList.add("has-error");ok=false;}} if(current===5 && !emailVerified){status("Please verify your email before submitting.","bad");ok=false} return ok;
+  }
+  function update(){
+    screens.forEach((s,i)=>s.classList.toggle("active",i===current-1));
+    steps.forEach((s,i)=>{s.classList.toggle("active",i===current-1);s.classList.toggle("done",i<current-1)});
+    back.style.display=current>1?"inline-flex":"none"; next.style.display=current<TOTAL?"inline-flex":"none"; submit.style.display=current===TOTAL?"inline-flex":"none";
+    steps[current-1]?.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"}); window.scrollTo({top:0,behavior:"smooth"});
+  }
+  function countdown(sec){clearInterval(otpTimer);let left=sec;timer.textContent="OTP expires in "+fmt(left);otpTimer=setInterval(()=>{left--;timer.textContent="OTP expires in "+fmt(Math.max(left,0));if(left<=0){clearInterval(otpTimer);status("OTP expired. Please request a new one.","bad")}},1000)}
+  function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+  function resendCountdown(){clearInterval(resendTimer);let left=30;resend.disabled=true;resend.textContent="RESEND ("+left+"s)";resendTimer=setInterval(()=>{left--;resend.textContent=left>0?"RESEND ("+left+"s)":"RESEND";if(left<=0){clearInterval(resendTimer);resend.disabled=false}},1000)}
+  const API_URL = window.MOTO_API_URL || "/api.php";
+  async function api(action, payload={}){
+    const res = await fetch(API_URL, {
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({action,...payload})
+    });
+    let data=null;
+    try{ data=await res.json(); }catch(_){ throw new Error("Invalid API response"); }
+    if(!res.ok) throw new Error(data?.message || "API request failed");
+    return data;
+  }
+  async function requestOtp(){
+    const e=email.value.trim();
+    if(!validEmail(e)){email.classList.add("error");email.closest(".field")?.classList.add("has-error");status("Please enter a valid email address.","bad");return}
+    sendOtp.disabled=true;sendOtp.textContent="SENDING...";
+    try{
+      const r=await api("sendOTP",{formData:{email:e},leadId:sessionId});
+      sendOtp.disabled=false;sendOtp.textContent="SEND OTP";
+      if(r?.success || r?.ok){otpBox.classList.add("show");otp.value="";otp.focus();status("Verification code sent to "+e+".","ok");countdown(300);resendCountdown()}
+      else status(r?.message||"Unable to send OTP.","bad")
+    }catch(err){sendOtp.disabled=false;sendOtp.textContent="SEND OTP";status(err.message||"Unable to send OTP right now. Please try again.","bad")}
+  }
+  sendOtp.addEventListener("click",requestOtp); resend.addEventListener("click",requestOtp);
+  verifyOtp.addEventListener("click",async()=>{
+    const code=otp.value.trim();
+    if(!/^\d{6}$/.test(code)){status("Enter the 6-digit OTP.","bad");return}
+    verifyOtp.disabled=true;verifyOtp.textContent="VERIFYING...";
+    try{
+      const r=await api("verifyOTP",{leadId:sessionId,email:email.value.trim(),otp:code});
+      verifyOtp.disabled=false;verifyOtp.textContent="VERIFY EMAIL";
+      if(r?.success || r?.ok){emailVerified=true;otpBox.classList.remove("show");verified.classList.add("show");status("Email verified successfully.","ok");email.readOnly=true;sendOtp.style.display="none"}
+      else status(r?.message||"Incorrect or expired OTP.","bad")
+    }catch(err){verifyOtp.disabled=false;verifyOtp.textContent="VERIFY EMAIL";status(err.message||"Verification failed. Please try again.","bad")}
+  });
+  next.addEventListener("click",()=>{if(validate()){current++;update()}});
+  back.addEventListener("click",()=>{if(current>1){current--;update()}});
+  form.addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!validate())return;
+    const data=Object.fromEntries(new FormData(form).entries());
+    data.email_verified=true;data.session_id=sessionId;
+    submit.disabled=true;submit.textContent="SUBMITTING...";
+    try{
+      const r=await api("submitApplication",{data,leadId:sessionId,email:data.email});
+      if(r?.success || r?.ok){form.style.display="none";document.querySelector(".sidebar").style.display="none";document.getElementById("success").classList.add("active")}
+      else{submit.disabled=false;submit.textContent="SUBMIT APPLICATION  →";status(r?.message||"Could not submit application.","bad")}
+    }catch(err){submit.disabled=false;submit.textContent="SUBMIT APPLICATION  →";status(err.message||"Something went wrong while submitting. Please try again.","bad")}
+  });
+  whatsappSame.addEventListener("change",()=>{if(whatsappSame.checked){whatsapp.value=digits(mobile.value).slice(0,10);whatsapp.readOnly=true}else whatsapp.readOnly=false});
+  mobile.addEventListener("input",()=>{mobile.value=digits(mobile.value).slice(0,10);if(whatsappSame.checked)whatsapp.value=mobile.value});
+  whatsapp.addEventListener("input",()=>whatsapp.value=digits(whatsapp.value).slice(0,10)); otp.addEventListener("input",()=>otp.value=otp.value.replace(/\D/g,"").slice(0,6));
+  otp.addEventListener("keydown",e=>{if(e.key==="Enter")verifyOtp.click()});
+  email.addEventListener("input",()=>{if(email.readOnly)return;emailVerified=false;verified.classList.remove("show");otpBox.classList.remove("show");sendOtp.style.display="inline-flex"});
+
+  steps.forEach((tab,index)=>{
+    tab.addEventListener("click",()=>{
+      const target=index+1;
+      if(target===current)return;
+      if(target<current){
+        current=target;
+        update();
+        return;
+      }
+      if(validate()){
+        current=target;
+        update();
+      }
+    });
+  });
+
+  const locationArea=form.querySelector('[name="location_area"]');
+  if(locationArea){
+    locationArea.addEventListener("input",()=>{
+      locationArea.classList.remove("error");
+      locationArea.closest(".field")?.classList.remove("has-error");
+    });
+  }
+
+  update();
+})();
+</script>
+</body></html>
