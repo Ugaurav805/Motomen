@@ -505,8 +505,58 @@ input:focus,select:focus,textarea:focus{
   .question:before{width:42px}
 }
 
+
+/* V7 — Delhi NCR qualification gate */
+body.ncr-locked > *:not(.ncr-gate){visibility:hidden}
+.ncr-gate{transition:opacity .26s ease;position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:22px;overflow:auto}
+.ncr-gate-backdrop{position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,rgba(229,47,57,.12),transparent 34%),rgba(2,3,4,.91);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.ncr-gate-card{position:relative;width:min(620px,100%);padding:34px 34px 27px;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:linear-gradient(145deg,rgba(19,21,24,.98),rgba(7,8,10,.99));box-shadow:0 35px 110px rgba(0,0,0,.68);text-align:center;overflow:hidden}
+.ncr-gate-card:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--red2),#d5b26a,var(--red2),transparent);opacity:.9}
+.ncr-gate-card:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.55),transparent 78%);pointer-events:none}
+.ncr-gate-card>*{position:relative;z-index:1}
+.ncr-gate-topline{display:flex;justify-content:center;align-items:center;gap:10px;color:#737a80;font-size:7px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.ncr-gate-topline i{width:22px;height:1px;background:linear-gradient(90deg,var(--red2),#d5b26a)}
+.ncr-gate-logo{display:block;width:145px;height:auto;object-fit:contain;margin:18px auto 13px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5))}
+.ncr-gate-eyebrow{color:#d6b36c;font-size:8px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.ncr-gate-card h1{margin:9px auto 10px;max-width:530px;font-family:Fraunces,Georgia,serif;font-size:clamp(28px,4.3vw,42px);line-height:1.03;letter-spacing:-1.25px;font-weight:600}
+.ncr-gate-copy{max-width:500px;margin:0 auto;color:#989ea4;font-size:11px;line-height:1.55}
+.ncr-gate-regions{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:17px auto 20px;max-width:500px}
+.ncr-gate-regions span{padding:7px 10px;border:1px solid rgba(213,178,106,.2);border-radius:999px;background:rgba(213,178,106,.045);color:#b8a27a;font-size:8px;font-weight:800}
+.ncr-gate-actions{display:grid;gap:9px;max-width:500px;margin:0 auto}
+.ncr-gate-btn{width:100%;min-height:52px;border-radius:12px;padding:0 18px;border:1px solid transparent;font-size:9px;font-weight:900;letter-spacing:.35px;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease,border-color .18s ease;background:none;color:#fff}
+.ncr-gate-btn:active{transform:translateY(1px)}
+.ncr-gate-yes{background:linear-gradient(180deg,#ef424b,#bd2029);border-color:rgba(255,105,113,.32);box-shadow:0 13px 28px rgba(201,33,43,.23);display:flex;align-items:center;justify-content:center;gap:12px}
+.ncr-gate-yes:hover{filter:brightness(1.06);box-shadow:0 16px 32px rgba(201,33,43,.3)}
+.ncr-gate-yes b{font-size:15px;font-weight:700;line-height:1}
+.ncr-gate-no{color:#9da3a8;border-color:#34393f;background:linear-gradient(180deg,#171a1d,#101214)}
+.ncr-gate-no:hover{color:#e4e6e8;border-color:#51575e;background:#181b1e}
+.ncr-gate-note{margin-top:15px;color:#626970;font-size:7.5px;letter-spacing:.2px}
+.ncr-gate-error{min-height:15px;margin-top:7px;color:#ff747c;font-size:8px}
+.ncr-gate.loading .ncr-gate-btn{pointer-events:none;opacity:.62}
+@media(max-width:580px){.ncr-gate{padding:12px}.ncr-gate-card{padding:25px 17px 20px;border-radius:20px}.ncr-gate-logo{width:120px;margin:15px auto 10px}.ncr-gate-card h1{font-size:27px;letter-spacing:-.9px}.ncr-gate-copy{font-size:9.5px}.ncr-gate-regions{gap:5px;margin:14px auto 17px}.ncr-gate-regions span{padding:6px 8px;font-size:7px}.ncr-gate-btn{min-height:50px;padding:0 12px;font-size:8px}.ncr-gate-note{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.ncr-gate-btn{transition:none}}
 </style></head>
-<body>
+<body class="ncr-locked">
+
+<!-- THE MOTO MEN — DELHI NCR QUALIFICATION GATE -->
+<div class="ncr-gate" id="ncrGate" role="dialog" aria-modal="true" aria-labelledby="ncrGateTitle">
+  <div class="ncr-gate-backdrop"></div>
+  <div class="ncr-gate-card">
+    <div class="ncr-gate-topline"><span>THE MOTO MEN</span><i></i><span>FRANCHISE INTAKE</span></div>
+    <img class="ncr-gate-logo" src="https://themotomen.com/wp-content/uploads/2024/03/elementor/thumbs/Logo-300-1-150x89.webp" alt="The Moto Men" width="175" height="104">
+    <div class="ncr-gate-eyebrow">BEFORE WE BEGIN</div>
+    <h1 id="ncrGateTitle">Are you planning to establish your franchise in Delhi NCR?</h1>
+    <p class="ncr-gate-copy">The Moto Men is currently accepting franchise applications specifically for the Delhi NCR market.</p>
+    <div class="ncr-gate-regions"><span>Delhi</span><span>Gurugram</span><span>Noida</span><span>Ghaziabad</span><span>Faridabad</span></div>
+    <div class="ncr-gate-actions">
+      <button type="button" class="ncr-gate-btn ncr-gate-yes" id="ncrYes">YES, MY FRANCHISE WILL BE IN DELHI NCR <b>→</b></button>
+      <button type="button" class="ncr-gate-btn ncr-gate-no" id="ncrNo">NO, I’M LOOKING OUTSIDE DELHI NCR</button>
+    </div>
+    <div class="ncr-gate-note">Takes approximately 2–3 minutes · Private franchise application</div>
+    <div class="ncr-gate-error" id="ncrGateError" aria-live="polite"></div>
+  </div>
+</div>
+
 <main class="page">
 <section class="hero">
   <div class="hero-inner">
@@ -819,6 +869,12 @@ input:focus,select:focus,textarea:focus{
   'use strict';
   const TOTAL=5;
   let current=1, emailVerified=false, otpTimer=null, resendTimer=null;
+  const ncrGate=document.getElementById('ncrGate');
+  const ncrYes=document.getElementById('ncrYes');
+  const ncrNo=document.getElementById('ncrNo');
+  const ncrGateError=document.getElementById('ncrGateError');
+  let ncrGateToken='';
+
   const form=document.getElementById('applicationForm');
   const steps=[...document.querySelectorAll('.step')];
   const screens=[...document.querySelectorAll('.form-step')];
@@ -930,6 +986,44 @@ input:focus,select:focus,textarea:focus{
   function countdown(sec){clearInterval(otpTimer);let left=sec;timer.textContent='OTP expires in '+fmt(left);otpTimer=setInterval(()=>{left--;timer.textContent='OTP expires in '+fmt(Math.max(left,0));if(left<=0){clearInterval(otpTimer);showStatus('OTP expired. Please request a new one.','bad')}},1000)}
   function resendCountdown(){clearInterval(resendTimer);let left=30;resend.disabled=true;resend.textContent='RESEND ('+left+'s)';resendTimer=setInterval(()=>{left--;resend.textContent=left>0?'RESEND ('+left+'s)':'RESEND';if(left<=0){clearInterval(resendTimer);resend.disabled=false}},1000)}
 
+  async function unlockNcrGate(){
+    ncrGateError.textContent='';
+    ncrGate.classList.add('loading');
+    ncrYes.innerHTML='OPENING APPLICATION…';
+
+    // UX fix: the qualification gate must not block the landing page when the
+    // PHP/Apps Script backend has not been configured yet (e.g. local preview).
+    // We unlock immediately, then try to obtain the secure server gate token.
+    document.body.classList.remove('ncr-locked');
+    ncrGate.classList.add('leaving');
+    ncrGate.style.opacity='0';
+    ncrGate.style.pointerEvents='none';
+
+    try{
+      const r=await api('gateCheck',{leadId:sessionId,eligibility:'yes'});
+      if((r?.success||r?.ok)&&r?.gateToken){
+        ncrGateToken=r.gateToken;
+        sessionStorage.setItem('moto_ncr_gate_token',ncrGateToken);
+      } else if(r?.message){
+        ncrGateError.textContent=r.message;
+      }
+    }catch(err){
+      // Static/local previews can work without the backend. On a live site,
+      // OTP/submission will still be protected by the server-side gate.
+      console.warn('NCR gate server check unavailable:',err.message||err);
+    }finally{
+      setTimeout(()=>{if(ncrGate.isConnected)ncrGate.remove()},260);
+      window.scrollTo({top:0,behavior:'smooth'});
+      ncrGate.classList.remove('loading');
+      ncrYes.innerHTML='YES, MY FRANCHISE WILL BE IN DELHI NCR <b>→</b>';
+    }
+  }
+
+  ncrYes.addEventListener('click',unlockNcrGate);
+  ncrNo.addEventListener('click',()=>{
+    window.location.href='thank-you.html?reason=ncr';
+  });
+
   async function api(action,payload={}){
     let res;
     try{res=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({action,...payload})})}
@@ -944,7 +1038,7 @@ input:focus,select:focus,textarea:focus{
     if(!validEmail(e)){markError(email);showStatus('Please enter a valid email address.','bad');return}
     clearField(email);sendOtp.disabled=true;sendOtp.textContent='SENDING...';showStatus('Sending your verification code…','');
     try{
-      const r=await api('sendOTP',{formData:{email:e},leadId:sessionId});
+      const r=await api('sendOTP',{formData:{email:e,ncr_eligibility:'yes',ncr_gate_token:ncrGateToken},leadId:sessionId,gateToken:ncrGateToken});
       if(r?.success||r?.ok){otpBox.classList.add('show');otp.value='';otp.focus();showStatus('Verification code sent to '+e+'.','ok');countdown(Number(r.expiresIn)||300);resendCountdown()}
       else showStatus(r?.message||'Unable to send OTP.','bad');
     }catch(err){showStatus(err.message||'Unable to send OTP right now.','bad')}
@@ -957,7 +1051,7 @@ input:focus,select:focus,textarea:focus{
     const code=digits(otp.value);if(!/^\d{6}$/.test(code)){showStatus('Enter the 6-digit OTP.','bad');return}
     verifyOtp.disabled=true;verifyOtp.textContent='VERIFYING...';
     try{
-      const r=await api('verifyOTP',{leadId:sessionId,email:email.value.trim(),otp:code});
+      const r=await api('verifyOTP',{leadId:sessionId,email:email.value.trim(),otp:code,gateToken:ncrGateToken});
       if(r?.success||r?.ok){emailVerified=true;clearInterval(otpTimer);clearInterval(resendTimer);otpBox.classList.remove('show');verified.classList.add('show');showStatus('Email verified successfully.','ok');email.readOnly=true;sendOtp.style.display='none'}
       else showStatus(r?.message||'Incorrect or expired OTP.','bad');
     }catch(err){showStatus(err.message||'Verification failed. Please try again.','bad')}
@@ -970,11 +1064,11 @@ input:focus,select:focus,textarea:focus{
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();if(!validate())return;
-    const data=Object.fromEntries(new FormData(form).entries());data.email_verified=true;data.session_id=sessionId;
+    const data=Object.fromEntries(new FormData(form).entries());data.email_verified=true;data.session_id=sessionId;data.ncr_eligibility='yes';data.ncr_gate_token=ncrGateToken;data.ncr_gate_confirmed_at=new Date().toISOString();
     submit.disabled=true;submit.textContent='SUBMITTING...';
     try{
-      const r=await api('submitApplication',{data,leadId:sessionId,email:data.email});
-      if(r?.success||r?.ok){form.style.display='none';document.querySelector('.sidebar').style.display='none';document.getElementById('success').classList.add('active');document.querySelector('.main')?.scrollIntoView({behavior:'smooth',block:'start'})}
+      const r=await api('submitApplication',{data,leadId:sessionId,email:data.email,gateToken:ncrGateToken});
+      if(r?.success||r?.ok){window.location.href='thank-you.html?submitted=1&lead='+encodeURIComponent(sessionId)}
       else throw new Error(r?.message||'Could not submit application.');
     }catch(err){submit.disabled=false;submit.textContent='SUBMIT APPLICATION  →';showStatus(err.message||'Something went wrong while submitting.','bad')}
   });
